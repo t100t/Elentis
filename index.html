@@ -1,0 +1,774 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <link rel="icon" href="/storage/img/favicon.ico?v=1" type="image/x-icon">
+    <title>Elentis</title>
+    <meta property="og:site_name" content="Solara Executor">
+    <meta property="og:title" content="Solara Executor">
+    <meta name="keywords" content="solara client, solara executor, solara, download solara, solara roblox">
+    <meta name="description" content="Powerful script executor for Roblox. Like steroids for Roblox - get an unfair advantage while remaining completely undetected.">
+    
+    <!-- Tailwind CSS -->
+    <script src="https://cdn.tailwindcss.com"></script>
+    
+    <!-- Plus Jakarta Sans Font -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:ital,wght@0,200..800;1,200..800&display=swap" rel="stylesheet">
+    
+    <!-- Font Awesome -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    
+    <!-- AOS Animation Library -->
+    <link href="https://unpkg.com/aos@2.3.1/dist/aos.css" rel="stylesheet">
+    
+    <script>
+        tailwind.config = {
+            darkMode: 'class',
+            theme: {
+                extend: {
+                    fontFamily: {
+                        'jakarta': ['Plus Jakarta Sans', 'sans-serif'],
+                    },
+                    colors: {
+                        primary: {
+                            50: '#f0f9ff',
+                            500: '#3b82f6',
+                            600: '#2563eb',
+                            700: '#1d4ed8',
+                            900: '#1e3a8a',
+                        }
+                    }
+                }
+            }
+        }
+    </script>
+    
+    <style>
+        .gradient-bg {
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+        }
+        
+        .glow-effect {
+            box-shadow: 0 0 20px rgba(59, 130, 246, 0.5);
+        }
+        
+        .theme-transition {
+            transition: background-color 0.3s ease, color 0.3s ease;
+        }
+        
+        .glass-morphism {
+            background: rgba(255, 255, 255, 0.1);
+            backdrop-filter: blur(10px);
+            border: 1px solid rgba(255, 255, 255, 0.1);
+        }
+        
+        .dark .glass-morphism {
+            background: rgba(0, 0, 0, 0.3) !important;
+            border: 1px solid rgba(255, 255, 255, 0.1) !important;
+        }
+
+        .light .glass-morphism {
+            background: rgba(255, 255, 255, 0.8) !important;
+            border: 1px solid rgba(0, 0, 0, 0.1) !important;
+            backdrop-filter: blur(10px);
+        }
+
+        /* Background Paths Effect - ИСПРАВЛЕНО */
+        .background-paths {
+            position: absolute;
+            inset: 0;
+            z-index: 0;
+            overflow: hidden;
+        }
+
+        .path-line {
+            position: absolute;
+            opacity: 0.1;
+            stroke-width: 2;
+            fill: none;
+            stroke: url(#gradient-stroke);
+            stroke-dasharray: 1000;
+            stroke-dashoffset: 1000;
+            animation: draw-path 15s linear infinite;
+        }
+
+        @keyframes draw-path {
+            0% {
+                stroke-dashoffset: 1000;
+                opacity: 0;
+            }
+            10% {
+                opacity: 0.3;
+            }
+            90% {
+                opacity: 0.3;
+            }
+            100% {
+                stroke-dashoffset: 0;
+                opacity: 0;
+            }
+        }
+
+        .light-theme-text {
+            color: #1f2937 !important;
+        }
+
+        .light .hero-title {
+            background: linear-gradient(135deg, #1e40af, #3b82f6, #0891b2) !important;
+            background-clip: text !important;
+            -webkit-background-clip: text !important;
+            -webkit-text-fill-color: transparent !important;
+        }
+
+        .dark .hero-title {
+            background: linear-gradient(135deg, #60a5fa, #3b82f6, #06b6d4) !important;
+            background-clip: text !important;
+            -webkit-background-clip: text !important;
+            -webkit-text-fill-color: transparent !important;
+        }
+
+        .feature-title {
+            color: #ffffff !important;
+        }
+
+        .light .feature-title {
+            color: #1f2937 !important;
+        }
+
+        .dark .feature-title {
+            color: #ffffff !important;
+        }
+
+        .faq-title {
+            color: #ffffff !important;
+        }
+
+        .light .faq-title {
+            color: #1f2937 !important;
+        }
+
+        .dark .faq-title {
+            color: #ffffff !important;
+        }
+
+        .mockup-image {
+            position: absolute;
+            right: 0;
+            top: 50%;
+            transform: translateY(-50%);
+            max-width: 300px;
+            height: auto;
+            opacity: 0.8;
+        }
+
+        .header-title {
+            color: #ffffff !important;
+        }
+
+        .light .header-title {
+            color: #1f2937 !important;
+        }
+
+        .dark .header-title {
+            color: #ffffff !important;
+        }
+
+        /* Fixed size for theme toggle button */
+        #theme-toggle {
+            width: 40px;
+            height: 40px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+
+        /* Password Section Styles */
+        .password-container {
+            margin-top: 2rem;
+            max-width: 400px;
+            margin-left: auto;
+            margin-right: auto;
+        }
+
+        .password-label {
+            display: block;
+            margin-bottom: 0.5rem;
+            font-size: 0.875rem;
+            font-weight: 600;
+            text-transform: uppercase;
+            letter-spacing: 0.05em;
+            opacity: 0.8;
+        }
+
+        .password-box {
+            display: flex;
+            align-items: center;
+            background: rgba(255, 255, 255, 0.1);
+            backdrop-filter: blur(10px);
+            border: 1px solid rgba(255, 255, 255, 0.2);
+            border-radius: 12px;
+            padding: 0.75rem 1rem;
+            transition: all 0.3s ease;
+            cursor: pointer;
+        }
+
+        .light .password-box {
+            background: rgba(255, 255, 255, 0.8);
+            border: 1px solid rgba(0, 0, 0, 0.1);
+            color: #1f2937;
+        }
+
+        .password-box:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 8px 25px rgba(59, 130, 246, 0.15);
+            border-color: rgba(59, 130, 246, 0.4);
+        }
+
+        .password-text {
+            flex: 1;
+            font-family: monospace;
+            font-size: 1.125rem;
+            font-weight: 600;
+            letter-spacing: 0.05em;
+            user-select: all;
+        }
+
+        .copy-button {
+            background: rgba(59, 130, 246, 0.2);
+            border: none;
+            border-radius: 8px;
+            padding: 0.5rem;
+            color: #3b82f6;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+
+        .copy-button:hover {
+            background: rgba(59, 130, 246, 0.3);
+            transform: scale(1.05);
+        }
+
+        .copy-success {
+            position: absolute;
+            background: rgba(34, 197, 94, 0.9);
+            color: white;
+            padding: 0.5rem 1rem;
+            border-radius: 8px;
+            font-size: 0.875rem;
+            font-weight: 600;
+            animation: fadeInOut 2s ease-in-out;
+            pointer-events: none;
+            z-index: 100;
+        }
+
+        @keyframes fadeInOut {
+            0% { opacity: 0; transform: translateY(10px); }
+            20% { opacity: 1; transform: translateY(0); }
+            80% { opacity: 1; transform: translateY(0); }
+            100% { opacity: 0; transform: translateY(-10px); }
+        }
+
+        .pulse-effect {
+            animation: pulse 0.6s ease-in-out;
+        }
+
+        @keyframes pulse {
+            0% { transform: scale(1); }
+            50% { transform: scale(1.05); }
+            100% { transform: scale(1); }
+        }
+
+        /* Modal Styles */
+        .modal {
+            display: none;
+            position: fixed;
+            z-index: 1000;
+            left: 0;
+            top: 0;
+            width: 100%;
+            height: 100%;
+            background-color: rgba(0, 0, 0, 0.8);
+            backdrop-filter: blur(5px);
+        }
+
+        .modal-content {
+            background: rgba(255, 255, 255, 0.1);
+            backdrop-filter: blur(10px);
+            border: 1px solid rgba(255, 255, 255, 0.1);
+            margin: 5% auto;
+            padding: 32px;
+            border-radius: 16px;
+            width: 90%;
+            max-width: 700px;
+            max-height: 80vh;
+            overflow-y: auto;
+            position: relative;
+            color: white;
+        }
+
+        .light .modal-content {
+            background: rgba(255, 255, 255, 0.8);
+            color: #1f2937;
+            border: 1px solid rgba(0, 0, 0, 0.1);
+        }
+
+        .close {
+            color: #aaa;
+            float: right;
+            font-size: 28px;
+            font-weight: bold;
+            cursor: pointer;
+            position: absolute;
+            top: 15px;
+            right: 25px;
+            transition: color 0.3s ease;
+        }
+
+        .close:hover {
+            color: #fff;
+        }
+
+        .light .close:hover {
+            color: #000;
+        }
+
+        .modal-content h2 {
+            margin-top: 0;
+            margin-bottom: 20px;
+            font-size: 28px;
+            font-weight: bold;
+            text-align: center;
+        }
+
+        .modal-content p {
+            margin-bottom: 15px;
+            line-height: 1.6;
+        }
+
+        .modal-content ol {
+            margin-left: 20px;
+            margin-bottom: 20px;
+        }
+
+        .modal-content li {
+            margin-bottom: 15px;
+            line-height: 1.6;
+        }
+
+        .modal-content img {
+            max-width: 100%;
+            height: auto;
+            border-radius: 8px;
+            margin: 16px 0;
+            box-shadow: 0 4px 16px rgba(0, 0, 0, 0.2);
+        }
+
+        .modal-content strong {
+            color: #60a5fa;
+        }
+
+        .light .modal-content strong {
+            color: #2563eb;
+        }
+
+        @media (max-width: 768px) {
+            .modal-content {
+                margin: 10% auto;
+                padding: 24px;
+                width: 95%;
+            }
+        }
+    </style>
+</head>
+
+<body class="font-jakarta bg-black text-white theme-transition">
+    <nav class="fixed top-0 w-full z-50 glass-morphism">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="flex justify-between items-center h-16">
+                <div class="flex items-center">
+                    <img src="img/logo.png" alt="Solara" class="h-10 w-auto">
+                    <span class="header-title ml-3 text-xl font-bold">Elentis</span>
+                </div>
+                
+                <div class="hidden md:flex items-center space-x-8">
+                    <a href="index.html#features" class="opacity-75 hover:opacity-100 transition-opacity">Features</a>
+                    <a href="index.html#faq" class="opacity-75 hover:opacity-100 transition-opacity">FAQ</a>
+                </div>
+                
+                <div class="flex items-center space-x-4">
+                    <button id="theme-toggle" class="p-2 rounded-lg glass-morphism hover:bg-white hover:bg-opacity-20 transition-all">
+                        <i class="fas fa-sun text-yellow-400" id="theme-icon"></i>
+                    </button>
+                </div>
+            </div>
+        </div>
+    </nav>
+
+    <section class="min-h-screen flex items-center justify-center relative overflow-hidden">
+        <div class="background-paths">
+            <svg class="absolute inset-0 w-full h-full" xmlns="http://www.w3.org/2000/svg">
+                <defs>
+                    <linearGradient id="gradient-stroke" x1="0%" y1="0%" x2="100%" y2="0%">
+                        <stop offset="0%" style="stop-color:#60a5fa;stop-opacity:1" />
+                        <stop offset="50%" style="stop-color:#3b82f6;stop-opacity:1" />
+                        <stop offset="100%" style="stop-color:#06b6d4;stop-opacity:1" />
+                    </linearGradient>
+                </defs>
+                
+                <path class="path-line" d="M0,200 Q400,100 800,300 T1600,200" style="animation-delay: 0s;" />
+                <path class="path-line" d="M0,400 Q600,200 1200,500 T2400,300" style="animation-delay: 2s;" />
+                <path class="path-line" d="M-200,600 Q200,400 600,700 T1400,500" style="animation-delay: 4s;" />
+                <path class="path-line" d="M0,100 Q800,50 1600,150 T3200,100" style="animation-delay: 6s;" />
+                <path class="path-line" d="M-400,800 Q400,600 1200,900 T2800,700" style="animation-delay: 8s;" />
+                
+                <path class="path-line" d="M200,0 Q300,400 100,800 T200,1600" style="animation-delay: 1s;" />
+                <path class="path-line" d="M600,0 Q500,600 700,1200 T600,2400" style="animation-delay: 3s;" />
+                <path class="path-line" d="M1000,-200 Q1100,200 900,600 T1000,1400" style="animation-delay: 5s;" />
+            </svg>
+        </div>
+        
+        <div class="relative z-10 text-center px-4 sm:px-6 lg:px-8 max-w-4xl mx-auto">
+            <div data-aos="fade-up" data-aos-duration="1000">
+                <h1 class="hero-title text-5xl md:text-7xl font-extrabold mb-6">
+                    Elentis Loader
+                </h1>
+                <p class="text-xl md:text-2xl mb-8 max-w-2xl mx-auto">
+                    Powerful cheat loader for games
+                </p>
+            </div>
+            
+            <div data-aos="fade-up" data-aos-delay="200" data-aos-duration="1000" class="mb-8">
+                <p class="text-sm mb-4 uppercase tracking-widest opacity-75">
+                    The First & Undetected
+                </p>
+                
+                <a href="your-download-link-here" 
+                   class="inline-flex items-center px-8 py-4 text-lg font-semibold text-white bg-gradient-to-r from-blue-600 to-cyan-600 rounded-full hover:from-blue-700 hover:to-cyan-700 transform hover:scale-105 transition-all duration-300 glow-effect">
+                    <i class="fas fa-download mr-3"></i>
+                    Download Now
+                </a>
+
+                <!-- Password Section -->
+                <div class="password-container" data-aos="fade-up" data-aos-delay="400">
+                    <span class="password-label">Password for Archive</span>
+                    <div class="password-box" id="password-box">
+                        <span class="password-text" id="password-text">Elentis2024!</span>
+                        <button class="copy-button" id="copy-button" title="Copy password">
+                            <i class="fas fa-copy"></i>
+                        </button>
+                    </div>
+                </div>
+            </div>
+            
+            <div data-aos="fade-up" data-aos-delay="400" data-aos-duration="1000" class="flex flex-col sm:flex-row gap-4 justify-center items-center">
+                <button onclick="scrollToSection('features')" 
+                        class="inline-flex items-center px-6 py-3 border rounded-full transition-all duration-300 border-gray-600 hover:border-gray-400">
+                    Learn More
+                    <i class="fas fa-arrow-down ml-2"></i>
+                </button>
+            </div>
+        </div>
+    </section>
+
+    <section id="features" class="py-20 relative">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="text-center mb-16" data-aos="fade-up">
+                <h2 class="text-4xl md:text-5xl font-bold mb-6 bg-gradient-to-r from-blue-400 to-cyan-500 bg-clip-text text-transparent">
+                    Why Choose Elentis?
+                </h2>
+                <p class="text-xl max-w-3xl mx-auto opacity-75">
+                    Experience the most advanced loader with unparalleled features and performance
+                </p>
+            </div>
+
+            <div class="grid lg:grid-cols-2 gap-12 mb-16">
+                <div class="glass-morphism rounded-2xl p-8 hover:scale-105 transition-transform duration-300 relative overflow-hidden" data-aos="fade-up" data-aos-delay="100">
+                    <div class="relative z-10">
+                        <div class="w-16 h-16 bg-gradient-to-r from-blue-500 to-purple-500 rounded-2xl flex items-center justify-center mb-6">
+                            <i class="fas fa-ghost text-2xl text-white"></i>
+                        </div>
+                        <h3 class="feature-title text-2xl font-bold mb-4">100% Keyless</h3>
+                        <p class="opacity-75 mb-4">
+                            We use advanced obfuscation techniques to protect your account from detection. Your privacy is our top priority. Our team works 24/7 to release updates for our readers within hours, not days. You'll always be in the game.
+                        </p>
+                    </div>
+                </div>
+                
+                <div class="glass-morphism rounded-2xl p-8 hover:scale-105 transition-transform duration-300 relative overflow-hidden" data-aos="fade-up" data-aos-delay="200">
+                    <div class="relative z-10">
+                        <div class="w-16 h-16 bg-gradient-to-r from-blue-500 to-cyan-500 rounded-2xl flex items-center justify-center mb-6">
+                            <i class="fas fa-palette text-2xl text-white"></i>
+                        </div>
+                        <h3 class="feature-title text-2xl font-bold mb-4">Beautiful UI</h3>
+                        <p class="opacity-75 mb-4">
+                            Sleek, modern interface designed for the best user experience. Eye candy that doesn't compromise functionality.
+                        </p>
+                    </div>
+                </div>
+            </div>
+
+            <div class="grid md:grid-cols-2 lg:grid-cols-4 gap-8">
+                <div class="glass-morphism rounded-2xl p-8 hover:scale-105 transition-transform duration-300" data-aos="fade-up" data-aos-delay="300">
+                    <div class="w-16 h-16 bg-gradient-to-r from-cyan-500 to-blue-600 rounded-2xl flex items-center justify-center mb-6">
+                        <i class="fas fa-rocket text-2xl text-white"></i>
+                    </div>
+                    <h3 class="feature-title text-2xl font-bold mb-4">Instant Updates</h3>
+                    <p class="opacity-75">
+                        Always stay ahead with automatic updates. No manual downloads or complicated update processes.
+                    </p>
+                </div>
+
+                <div class="glass-morphism rounded-2xl p-8 hover:scale-105 transition-transform duration-300" data-aos="fade-up" data-aos-delay="400">
+                    <div class="w-16 h-16 bg-gradient-to-r from-green-500 to-blue-500 rounded-2xl flex items-center justify-center mb-6">
+                        <i class="fas fa-shield-alt text-2xl text-white"></i>
+                    </div>
+                    <h3 class="feature-title text-2xl font-bold mb-4">Undetectable</h3>
+                    <p class="opacity-75">
+                        Advanced anti-detection technology keeps you safe while using scripts. Bypass anywhere with confidence.
+                    </p>
+                </div>
+                
+                <div class="glass-morphism rounded-2xl p-8 hover:scale-105 transition-transform duration-300" data-aos="fade-up" data-aos-delay="500">
+                    <div class="w-16 h-16 bg-gradient-to-r from-yellow-500 to-orange-500 rounded-2xl flex items-center justify-center mb-6">
+                        <i class="fas fa-users text-2xl text-white"></i>
+                    </div>
+                    <h3 class="feature-title text-2xl font-bold mb-4">Active Support</h3>
+                    <p class="opacity-75">
+                        Whatever the issue may be, we're here to help you solve it. Dedicated support team ready to assist.
+                    </p>
+                </div>
+
+                <div class="glass-morphism rounded-2xl p-8 hover:scale-105 transition-transform duration-300" data-aos="fade-up" data-aos-delay="600">
+                    <div class="w-16 h-16 bg-gradient-to-r from-blue-600 to-indigo-600 rounded-2xl flex items-center justify-center mb-6">
+                        <i class="fas fa-award text-2xl text-white"></i>
+                    </div>
+                    <h3 class="feature-title text-2xl font-bold mb-4">Trusted Provider</h3>
+                    <p class="opacity-75">
+                        Leading and most trusted script executor provider since 2023. Join thousands of satisfied users.
+                    </p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section id="faq" class="py-20 relative">
+        <div class="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="text-center mb-16" data-aos="fade-up">
+                <h2 class="text-4xl md:text-5xl font-bold mb-6 bg-gradient-to-r from-blue-400 to-cyan-500 bg-clip-text text-transparent">
+                    Frequently Asked Questions
+                </h2>
+            </div>
+
+            <div class="space-y-6">
+                <div class="glass-morphism rounded-2xl p-6" data-aos="fade-up" data-aos-delay="100">
+                    <button class="flex justify-between items-center w-full text-left" onclick="toggleFAQ(1)">
+                        <h3 class="faq-title text-xl font-semibold">Are your mods safe to use?</h3>
+                        <i class="fas fa-chevron-down opacity-60 transform transition-transform" id="faq-icon-1"></i>
+                    </button>
+                    <div class="hidden mt-4 opacity-75" id="faq-content-1">
+                        <p>Yes, our mods are designed to be undetectable by anti-cheat systems. We regularly update them to ensure they remain safe to use with the latest game versions. However, we always recommend using mods responsibly and following our guidelines to minimize any risk.</p>
+                    </div>
+                </div>
+
+                <div class="glass-morphism rounded-2xl p-6" data-aos="fade-up" data-aos-delay="200">
+                    <button class="flex justify-between items-center w-full text-left" onclick="toggleFAQ(2)">
+                        <h3 class="faq-title text-xl font-semibold">How often do you update your mods?</h3>
+                        <i class="fas fa-chevron-down opacity-60 transform transition-transform" id="faq-icon-2"></i>
+                    </button>
+                    <div class="hidden mt-4 opacity-75" id="faq-content-2">
+                        <p>We update our mods as soon as possible after game updates are released. For popular games, updates are typically available within 24-48 hours. You can check the status of each mod on its respective page.</p>
+                    </div>
+                </div>
+
+                <div class="glass-morphism rounded-2xl p-6" data-aos="fade-up" data-aos-delay="300">
+                    <button class="flex justify-between items-center w-full text-left" onclick="toggleFAQ(3)">
+                        <h3 class="faq-title text-xl font-semibold">Have any questions? Learn more from our support articles or active gaming community.</h3>
+                        <i class="fas fa-chevron-down opacity-60 transform transition-transform" id="faq-icon-3"></i>
+                    </button>
+                    <div class="hidden mt-4 opacity-75" id="faq-content-3">
+                        <p>If you have additional questions, feel free to browse our comprehensive support articles or join our active gaming community where you can get help from other users and our support team.</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <footer class="py-12 border-t border-gray-800">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="flex flex-col md:flex-row justify-between items-center">
+                <div class="flex items-center mb-4 md:mb-0">
+                    <img src="img/logo.png" alt="Solara" class="h-8 w-auto">
+                    <span class="header-title ml-3 text-lg font-bold">Elentis</span>
+                </div>
+                
+                <div class="flex space-x-6">
+                    <a href="index.html" class="opacity-60 hover:opacity-100 transition-opacity">Home</a>
+                    <a href="Bootstrapper" class="opacity-60 hover:opacity-100 transition-opacity">Download</a>
+                </div>
+            </div>
+            
+            <div class="mt-8 pt-8 border-t border-gray-800 text-center opacity-60">
+                <p>&copy; 2023-2025 Elentis Industries, LLC. All rights reserved.</p>
+            </div>
+        </div>
+    </footer>
+
+    <script src="https://unpkg.com/aos@2.3.1/dist/aos.js"></script>
+    
+    <script>
+        // Инициализация AOS
+        AOS.init({
+            duration: 1000,
+            once: true,
+            mirror: false
+        });
+
+        // Управление темой
+        const themeToggle = document.getElementById('theme-toggle');
+        const themeIcon = document.getElementById('theme-icon');
+        const html = document.documentElement;
+        const savedTheme = localStorage.getItem('theme');
+        const systemPreference = window.matchMedia('(prefers-color-scheme: dark)').matches ? 'dark' : 'light';
+        const currentTheme = savedTheme || systemPreference;
+
+        function applyTheme(theme) {
+            if (theme === 'light') {
+                html.classList.remove('dark');
+                html.classList.add('light');
+                document.body.classList.remove('bg-black', 'text-white');
+                document.body.classList.add('bg-white', 'text-gray-900');
+                themeIcon.className = 'fas fa-moon text-gray-600';
+            } else {
+                html.classList.remove('light');
+                html.classList.add('dark');
+                document.body.classList.remove('bg-white', 'text-gray-900');
+                document.body.classList.add('bg-black', 'text-white');
+                themeIcon.className = 'fas fa-sun text-yellow-400';
+            }
+        }
+
+        applyTheme(currentTheme);
+
+        themeToggle.addEventListener('click', function() {
+            if (html.classList.contains('dark')) {
+                applyTheme('light');
+                localStorage.setItem('theme', 'light');
+            } else {
+                applyTheme('dark');
+                localStorage.setItem('theme', 'dark');
+            }
+        });
+
+        // Функции для FAQ
+        function toggleFAQ(id) {
+            const content = document.getElementById('faq-content-' + id);
+            const icon = document.getElementById('faq-icon-' + id);
+            
+            if (content.classList.contains('hidden')) {
+                content.classList.remove('hidden');
+                icon.classList.add('rotate-180');
+            } else {
+                content.classList.add('hidden');
+                icon.classList.remove('rotate-180');
+            }
+        }
+
+        // Функция для плавной прокрутки
+        function scrollToSection(sectionId) {
+            document.getElementById(sectionId).scrollIntoView({
+                behavior: 'smooth'
+            });
+        }
+
+        // Плавная прокрутка для всех ссылок с якорями
+        document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+            anchor.addEventListener('click', function (e) {
+                e.preventDefault();
+                const target = document.querySelector(this.getAttribute('href'));
+                if (target) {
+                    target.scrollIntoView({
+                        behavior: 'smooth',
+                        block: 'start'
+                    });
+                }
+            });
+        });
+
+        // Параллакс эффект для фоновых элементов
+        window.addEventListener('scroll', () => {
+            const scrollY = window.pageYOffset;
+            const paths = document.querySelectorAll('.path-line');
+            
+            paths.forEach((path, index) => {
+                const speed = 0.5 + index * 0.1;
+                path.style.transform = `translateY(${scrollY * speed}px)`;
+            });
+        });
+
+        // Функционал копирования пароля
+        const passwordBox = document.getElementById('password-box');
+        const passwordText = document.getElementById('password-text');
+        const copyButton = document.getElementById('copy-button');
+
+        function copyPassword() {
+            const password = passwordText.textContent;
+            
+            // Используем современный Clipboard API
+            navigator.clipboard.writeText(password).then(() => {
+                showCopySuccess();
+            }).catch(err => {
+                // Fallback для старых браузеров
+                const textArea = document.createElement('textarea');
+                textArea.value = password;
+                document.body.appendChild(textArea);
+                textArea.select();
+                document.execCommand('copy');
+                document.body.removeChild(textArea);
+                showCopySuccess();
+            });
+        }
+
+        function showCopySuccess() {
+            // Создаем элемент уведомления
+            const successMsg = document.createElement('div');
+            successMsg.className = 'copy-success';
+            successMsg.textContent = 'copied!';
+            
+            // Позиционируем уведомление
+            const rect = passwordBox.getBoundingClientRect();
+            successMsg.style.top = (rect.top - 40) + 'px';
+            successMsg.style.left = (rect.left + rect.width / 2 - 60) + 'px';
+            
+            document.body.appendChild(successMsg);
+            
+            // Анимация кнопки
+            copyButton.classList.add('pulse-effect');
+            const icon = copyButton.querySelector('i');
+            icon.className = 'fas fa-check';
+            
+            // Удаляем уведомление после анимации
+            setTimeout(() => {
+                successMsg.remove();
+                copyButton.classList.remove('pulse-effect');
+                icon.className = 'fas fa-copy';
+            }, 2000);
+        }
+
+        // Обработчики событий
+        copyButton.addEventListener('click', function(e) {
+            e.stopPropagation();
+            copyPassword();
+        });
+
+        passwordBox.addEventListener('click', function() {
+            copyPassword();
+        });
+    </script>
+</body>
+</html>
